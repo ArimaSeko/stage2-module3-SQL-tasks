@@ -1,91 +1,70 @@
--- Insert new Students with names “John”, “Chris”, “Carl” for grade “1”, then with names
--- “Oliver”, “James”, “Lucas” and “Henry” for grade “2” and with names “Jacob” and “Logan” for grade “3”. Insert more students for 4 and 5 grade.
-INSERT INTO student (name, birthday, groupnumber)
-VALUES ('John', '2008-01-01', 1),
-       ('Chris', '2008-02-02', 1),
-       ('Carl', '2008-03-03', 1),
-       ('Oliver', '2009-01-01', 2),
-       ('James', '2009-02-02', 2),
-       ('Lucas', '2009-03-03', 2),
-       ('Henry', '2009-04-04', 2),
-       ('Jacob', '2010-01-01', 3),
-       ('Logan', '2010-02-02', 3);
--- Insert new Subjects:
+INSERT INTO Student(`name`, groupnumber) VALUES ('John', 1);
+INSERT INTO Student(`name`, groupnumber) VALUES ('Chris', 1);
+INSERT INTO Student(`name`, groupnumber) VALUES ('Carl', 1);
 
--- Art and music for 1 grade;
--- Geography and history for 2 grade;
--- PE and math for 3 grade;
--- Science and IT for 4 grade.
--- Insert 2 subjects for 5 grade.
-INSERT INTO subject (name, description, grade) VALUES
-                                                   ('Art', 'The study of creating beautiful and meaningful objects', 1),
-                                                   ('Music', 'The study of sound and its production, performance, and appreciation', 1);
 
-INSERT INTO subject (name, description, grade) VALUES ('Geography', 'The study of the Earth', 2),
-                                                      ('History', 'The study of past events', 2);
+INSERT INTO Student(`name`, groupnumber) VALUES ('Oliver' ,2);
+INSERT INTO Student(`name`, groupnumber) VALUES ('James', 2);
+INSERT INTO Student(`name`, groupnumber) VALUES ('Lucas', 2);
+INSERT INTO Student(`name`, groupnumber) VALUES ('Henry', 2);
 
-INSERT INTO subject (name, description, grade) VALUES
-                                                   ('PE', 'The study of physical fitness and exercise', 3),
-                                                   ('Math', 'The study of numbers and their operations', 3);
+INSERT INTO Student(`name`, groupnumber) VALUES ('Jacob' ,3);
+INSERT INTO Student(`name`, groupnumber) VALUES ('Logan', 3);
 
-INSERT INTO subject (name, description, grade) VALUES
-                                                   ('Science', 'The study of the natural world', 4),
-                                                   ('IT', 'The study of information technology', 4);
+INSERT INTO Student(`name`, groupnumber) VALUES ('Asliddin', 4);
+INSERT INTO Student(`name`, groupnumber) VALUES ('Azamat', 4);
+INSERT INTO Student(`name`, groupnumber) VALUES ('Jahongir', 4);
+INSERT INTO Student(`name`, groupnumber) VALUES ('Bobojon', 4);
 
-INSERT INTO subject (name, description, grade) VALUES
-                                                   ('Literature', 'The study of written works', 5),
-                                                   ('Foreign Language', 'The study of a language other than one''s native language', 5);
+INSERT INTO Student(`name`, groupnumber) VALUES ('Bobur' ,5);
+INSERT INTO Student(`name`, groupnumber) VALUES ('Elmurod', 5);
+INSERT INTO Student(`name`, groupnumber) VALUES ('Donyor', 5);
+INSERT INTO Student(`name`, groupnumber) VALUES ('Ikrima', 5);
 
-INSERT INTO paymenttype (name)
-VALUES ('DAILY'),
-       ('WEEKLY'),
-       ('MONTHLY');
---
-INSERT INTO payment (type_id, amount, payment_date, student_id) VALUES (
-                                                                           (SELECT id FROM paymenttype WHERE name = 'WEEKLY'),
-                                                                           100.00,
-                                                                           '2023-06-28 05:15:15',
-                                                                           (SELECT id FROM student WHERE name = 'John')
-                                                                       ),
-                                                                       (
-                                                                           (SELECT id FROM paymenttype WHERE name = 'MONTHLY'),
-                                                                           200.00,
-                                                                           '2023-06-01 05:15:15',
-                                                                           (SELECT id FROM student WHERE name = 'Oliver')
-                                                                       ),
-                                                                       (
-                                                                           (SELECT id FROM paymenttype WHERE name = 'WEEKLY'),
-                                                                           50.00,
-                                                                           '2023-06-24 05:15:15',
-                                                                           (SELECT id FROM student WHERE name = 'Henry')
-                                                                       ),
-                                                                       (
-                                                                           (SELECT id FROM paymenttype WHERE name = 'DAILY'),
-                                                                           10.00,
-                                                                           '2023-06-28 05:15:15',
-                                                                           (SELECT id FROM student WHERE name = 'James')
-                                                                       );
-INSERT INTO mark (student_id, subject_id, mark) VALUES (
-                                                           (SELECT id FROM student WHERE name = 'Chris'),
-                                                           (SELECT id FROM subject WHERE name = 'Art'),
-                                                           8
-                                                       ),
-                                                       (
-                                                           (SELECT id FROM student WHERE name = 'Oliver'),
-                                                           (SELECT id FROM subject WHERE name = 'History'),
-                                                           5
-                                                       ),
-                                                       (
-                                                           (SELECT id FROM student WHERE name = 'James'),
-                                                           (SELECT id FROM subject WHERE name = 'Geography'),
-                                                           9),
-                                                       (
-                                                           (SELECT id FROM student WHERE name = 'Jacob'),
-                                                           (SELECT id FROM subject WHERE name = 'Math'),
-                                                           4
-                                                       ),
-                                                       (
-                                                           (SELECT id FROM student WHERE name = 'Logan'),
-                                                           (SELECT id FROM subject WHERE name = 'PE'),
-                                                           9
-                                                       );
+/* SUBJECT */
+INSERT INTO SUBJECT (`name`, `grade`) VALUES ('Art', 1);
+INSERT INTO SUBJECT (`name`, `grade`) VALUES ('Music', 1);
+INSERT INTO SUBJECT (`name`, `grade`) VALUES ('Geography', 2);
+INSERT INTO SUBJECT (`name`, `grade`) VALUES ('History', 2);
+INSERT INTO SUBJECT (`name`, `grade`) VALUES ('PE', 3);
+INSERT INTO SUBJECT (`name`, `grade`) VALUES ('Math', 3);
+INSERT INTO SUBJECT (`name`, `grade`) VALUES ('Science', 4);
+INSERT INTO SUBJECT (`name`, `grade`) VALUES ('IT', 4);
+INSERT INTO SUBJECT (`name`, `grade`) VALUES ('Computer Science', 5);
+INSERT INTO SUBJECT (`name`, `grade`) VALUES ('Web Development', 5);
+
+/* PAYMENT TYPE */
+INSERT INTO PAYMENTTYPE (name) VALUES ('DAILY');
+INSERT INTO PAYMENTTYPE (name) VALUES ('WEEKLY');
+INSERT INTO PAYMENTTYPE (name) VALUES ('MONTHLY');
+
+/* PAYMENT */
+INSERT INTO PAYMENT (`type_id`, `student_id`) VALUES
+    ((select id from PAYMENTTYPE WHERE name = 'WEEKLY'), (select id from Student WHERE name = 'John'));
+
+INSERT INTO PAYMENT (`type_id`, `student_id`) VALUES
+    ((select id from PAYMENTTYPE WHERE name = 'MONTHLY'), (select id from Student WHERE name = 'Oliver'));
+
+INSERT INTO PAYMENT (`type_id`, `student_id`) VALUES
+    ((select id from PAYMENTTYPE WHERE name = 'WEEKLY'), (select id from Student WHERE name = 'Henry'));
+
+INSERT INTO PAYMENT (`type_id`, `student_id`) VALUES
+    ((select id from PAYMENTTYPE WHERE name = 'DAILY'), (select id from Student WHERE name = 'James'));
+
+INSERT INTO PAYMENT (`type_id`, `student_id`) VALUES
+    ((select id from PAYMENTTYPE WHERE name = 'MONTHLY'), (select id from Student WHERE name = 'Azamat'));
+
+INSERT INTO PAYMENT (`type_id`, `student_id`) VALUES
+    ((select id from PAYMENTTYPE WHERE name = 'WEEKLY'), (select id from Student WHERE name = 'Asliddin'));
+
+INSERT INTO PAYMENT (`type_id`, `student_id`) VALUES
+    ((select id from PAYMENTTYPE WHERE name = 'WEEKLY'), (select id from Student WHERE name = 'Bobojon'));
+
+/* MARKS */
+INSERT INTO MARK (student_id, subject_id, mark) VALUES ( (select id from Student where name='Chris'), (select id from Subject where name='Art'), 8);
+INSERT INTO MARK (student_id, subject_id, mark) VALUES ( (select id from Student where name='Oliver'), (select id from Subject where name='History'), 5);
+INSERT INTO MARK (student_id, subject_id, mark) VALUES ( (select id from Student where name='James'), (select id from Subject where name='Geography'), 9);
+INSERT INTO MARK (student_id, subject_id, mark) VALUES ( (select id from Student where name='Jacob'), (select id from Subject where name='Math'), 4);
+INSERT INTO MARK (student_id, subject_id, mark) VALUES ( (select id from Student where name='Logan'), (select id from Subject where name='PE'), 9);
+INSERT INTO MARK (student_id, subject_id, mark) VALUES ( (select id from Student where name='Asliddin'), (select id from Subject where name='Computer Science'), 9);
+INSERT INTO MARK (student_id, subject_id, mark) VALUES ( (select id from Student where name='Azamat'), (select id from Subject where name='Web Development'), 9);
