@@ -17,20 +17,24 @@ VALUES ('John', '2008-01-01', 1),
 -- PE and math for 3 grade;
 -- Science and IT for 4 grade.
 -- Insert 2 subjects for 5 grade.
-INSERT INTO subject (name, description, grade) VALUES ('Art', 'The study of creating beautiful and meaningful objects', 1),
-       ('Music', 'The study of sound and its production, performance, and appreciation', 1);
+INSERT INTO subject (name, description, grade) VALUES
+                                                   ('Art', 'The study of creating beautiful and meaningful objects', 1),
+                                                   ('Music', 'The study of sound and its production, performance, and appreciation', 1);
 
 INSERT INTO subject (name, description, grade) VALUES ('Geography', 'The study of the Earth', 2),
-       ('History', 'The study of past events', 2);
+                                                      ('History', 'The study of past events', 2);
 
-INSERT INTO subject (name, description, grade) VALUES ('PE', 'The study of physical fitness and exercise', 3),
-       ('Math', 'The study of numbers and their operations', 3);
+INSERT INTO subject (name, description, grade) VALUES
+                                                   ('PE', 'The study of physical fitness and exercise', 3),
+                                                   ('Math', 'The study of numbers and their operations', 3);
 
-INSERT INTO subject (name, description, grade) VALUES ('Science', 'The study of the natural world', 4),
-       ('IT', 'The study of information technology', 4);
+INSERT INTO subject (name, description, grade) VALUES
+                                                   ('Science', 'The study of the natural world', 4),
+                                                   ('IT', 'The study of information technology', 4);
 
-INSERT INTO subject (name, description, grade) VALUES ('Literature', 'The study of written works', 5),
-       ('Foreign Language', 'The study of a language other than one''s native language', 5);
+INSERT INTO subject (name, description, grade) VALUES
+                                                   ('Literature', 'The study of written works', 5),
+                                                   ('Foreign Language', 'The study of a language other than one''s native language', 5);
 
 INSERT INTO paymenttype (name)
 VALUES ('DAILY'),
@@ -38,50 +42,50 @@ VALUES ('DAILY'),
        ('MONTHLY');
 --
 INSERT INTO payment (type_id, amount, payment_date, student_id) VALUES (
-           (SELECT id FROM paymenttype WHERE name = 'WEEKLY'),
-           100.00,
-           '2023-06-28 05:15:15',
-           (SELECT id FROM student WHERE name = 'John')
-       ),
-       (
-           (SELECT id FROM paymenttype WHERE name = 'MONTHLY'),
-           200.00,
-           '2023-06-01 05:15:15',
-           (SELECT id FROM student WHERE name = 'Oliver')
-       ),
-       (
-           (SELECT id FROM paymenttype WHERE name = 'WEEKLY'),
-           50.00,
-           '2023-06-24 05:15:15',
-           (SELECT id FROM student WHERE name = 'Henry')
-       ),
-       (
-           (SELECT id FROM paymenttype WHERE name = 'DAILY'),
-           10.00,
-           '2023-06-28 05:15:15',
-           (SELECT id FROM student WHERE name = 'James')
-       );
+                                                                           (SELECT id FROM paymenttype WHERE name = 'WEEKLY'),
+                                                                           100.00,
+                                                                           '2023-06-28 05:15:15',
+                                                                           (SELECT id FROM student WHERE name = 'John')
+                                                                       ),
+                                                                       (
+                                                                           (SELECT id FROM paymenttype WHERE name = 'MONTHLY'),
+                                                                           200.00,
+                                                                           '2023-06-01 05:15:15',
+                                                                           (SELECT id FROM student WHERE name = 'Oliver')
+                                                                       ),
+                                                                       (
+                                                                           (SELECT id FROM paymenttype WHERE name = 'WEEKLY'),
+                                                                           50.00,
+                                                                           '2023-06-24 05:15:15',
+                                                                           (SELECT id FROM student WHERE name = 'Henry')
+                                                                       ),
+                                                                       (
+                                                                           (SELECT id FROM paymenttype WHERE name = 'DAILY'),
+                                                                           10.00,
+                                                                           '2023-06-28 05:15:15',
+                                                                           (SELECT id FROM student WHERE name = 'James')
+                                                                       );
 INSERT INTO mark (student_id, subject_id, mark) VALUES (
-           (SELECT id FROM student WHERE name = 'Chris'),
-           (SELECT id FROM subject WHERE name = 'Art'),
-           8
-       ),
-       (
-           (SELECT id FROM student WHERE name = 'Oliver'),
-           (SELECT id FROM subject WHERE name = 'History'),
-           5
-       ),
-       (
-           (SELECT id FROM student WHERE name = 'James'),
-           (SELECT id FROM subject WHERE name = 'Geography'),
-           9),
-       (
-           (SELECT id FROM student WHERE name = 'Jacob'),
-           (SELECT id FROM subject WHERE name = 'Math'),
-           4
-       ),
-       (
-           (SELECT id FROM student WHERE name = 'Logan'),
-           (SELECT id FROM subject WHERE name = 'PE'),
-           9
-       );
+                                                           (SELECT id FROM student WHERE name = 'Chris'),
+                                                           (SELECT id FROM subject WHERE name = 'Art'),
+                                                           8
+                                                       ),
+                                                       (
+                                                           (SELECT id FROM student WHERE name = 'Oliver'),
+                                                           (SELECT id FROM subject WHERE name = 'History'),
+                                                           5
+                                                       ),
+                                                       (
+                                                           (SELECT id FROM student WHERE name = 'James'),
+                                                           (SELECT id FROM subject WHERE name = 'Geography'),
+                                                           9),
+                                                       (
+                                                           (SELECT id FROM student WHERE name = 'Jacob'),
+                                                           (SELECT id FROM subject WHERE name = 'Math'),
+                                                           4
+                                                       ),
+                                                       (
+                                                           (SELECT id FROM student WHERE name = 'Logan'),
+                                                           (SELECT id FROM subject WHERE name = 'PE'),
+                                                           9
+                                                       );
