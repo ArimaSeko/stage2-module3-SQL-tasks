@@ -1,20 +1,29 @@
 ALTER TABLE student
-ADD CONSTRAINT birthday_not CHECK (birthday is not null);
+    MODIFY birthday DATE NOT NULL;
+
 
 ALTER TABLE mark
-    ADD CONSTRAINT markCheck CHECK (mark >= 1 AND mark <= 10),
-    ADD CONSTRAINT studnotnull CHECK (student_id is not null),
-    ADD CONSTRAINT studnotnull CHECK (subject_id is not null);
+    MODIFY mark INT NOT NULL CHECK (mark BETWEEN 1 AND 10);
+ALTER TABLE mark
+    ADD CONSTRAINT fk_student_id FOREIGN KEY (student_id) REFERENCES student (id) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE mark
+    ADD CONSTRAINT fk_subject_id FOREIGN KEY (subject_id) REFERENCES subject (id) ON DELETE CASCADE ON UPDATE CASCADE;
 
 ALTER TABLE subject
-    ADD CONSTRAINT gradeCheck CHECK (grade >= 1 AND grade <= 5);
+    MODIFY grade INT NOT NULL CHECK (grade BETWEEN 1 AND 5);
 
 ALTER TABLE paymenttype
-    ADD CONSTRAINT unique_name UNIQUE (name);
+    MODIFY name VARCHAR(45) UNIQUE;
 
 
 ALTER TABLE payment
-    ADD CONSTRAINT type_id_not CHECK (type_id is not null),
-    ADD CONSTRAINT amount_not CHECK (amount is not null),
-    ADD CONSTRAINT payment_date_not CHECK (payment_date is not null);
+    MODIFY type_id BIGINT NOT NULL;
+ALTER TABLE payment
+    MODIFY amount decimal NOT NULL;
+ALTER TABLE payment
+    MODIFY payment_date DateTime NOT NULL;
+ALTER TABLE payment
+    ADD CONSTRAINT fk_type_id FOREIGN KEY (type_id) REFERENCES paymenttype (id) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE payment
+    ADD CONSTRAINT fk_student_id FOREIGN KEY (student_id) REFERENCES student (id) ON DELETE CASCADE ON UPDATE CASCADE;
 
