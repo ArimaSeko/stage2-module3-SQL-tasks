@@ -1,18 +1,20 @@
-alter table student
-alter column birthday date not null;
-alter table Mark
-alter column student_id set not null;
-alter table Mark
-alter column subject_id set not null;
-alter table Mark
-add constraint markConstraint check (mark>1 and mark<10);
-alter table Subject
-    add constraint subconst check(grade>1 and grade<5);
-alter table PaymentType
-    add constraint paynamecons unique(name);
-alter table Payment
-    alter column type_id set not null;
-alter table Payment
-    alter column amount set not null;
-alter table Payment
-    alter column payment_date set not null;
+ALTER TABLE Student
+ALTER COLUMN birthday DATE NOT NULL;
+
+ALTER TABLE Mark
+ALTER COLUMN mark INT NOT NULL CHECK (mark >= 1 AND mark <= 10),
+ALTER COLUMN student_id BIGINT NOT NULL,
+ALTER COLUMN subject_id BIGINT NOT NULL;
+
+ALTER TABLE Subject
+ALTER COLUMN grade INT NOT NULL CHECK (grade >= 1 AND grade <= 5);
+
+ALTER TABLE PaymentType
+    ADD CONSTRAINT unique_name UNIQUE (name);
+
+
+ALTER TABLE Payment
+ALTER COLUMN type_id BIGINT NOT NULL,
+ALTER COLUMN amount DECIMAL NOT NULL,
+ALTER COLUMN date DATETIME NOT NULL;
+
